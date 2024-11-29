@@ -1,11 +1,11 @@
-def square_matrix(sq_matrix):
-    rows = len(sq_matrix)    
-    cols = len(sq_matrix[0]) 
+def square_matrix(matrix):
+    rows = len(matrix)    
+    cols = len(matrix[0]) 
     
     result = [[0]*cols for _ in range(rows)]
     for i in range(cols):
         for j in range(rows):
-            result[i][j] = sq_matrix[i][j] ** 2
+            result[j][i] = matrix[j][i] ** 2
     
     return result
     
