@@ -23,38 +23,46 @@ def __caesarify__(dictionary, key, text, decode=False):
 dictionary_en = 'abcdefghijklmnopqrstuvwxyz'
 dictionary_ru = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя'
 
-def encode_en(text, key):
+def __encode_en__(text, key):
     return __caesarify__(dictionary_en, key, text)
 
-def decode_en(text, key):
+def __decode_en__(text, key):
     return __caesarify__(dictionary_en, key, text, decode=True)		  
     
-def encode_ru(text, key):
+def __encode_ru__(text, key):
     return __caesarify__(dictionary_ru, key, text)  
 
-def decode_ru(text, key):
+def __decode_ru__(text, key):
     return __caesarify__(dictionary_ru, key, text, decode=True)
 
 def encode(s, rotn):
-    return encode_en(s, rotn)     
+    return __encode_en__(s, rotn)     
 
 def decode(s, rotn):
-    return decode_en(s, rotn)  
+    return __decode_en__(s, rotn)  
 
-text = 'Съешь же ещё этих мягких французских булок да выпей чаю.'
-print(encode_ru(text, 3))
+#text = 'Съешь же ещё этих мягких французских булок да выпей чаю.'
+#print(encode_ru(text, 3))
 #Фэзыя йз зьи ахлш пвёнлш чугрщцкфнлш дцосн жг еютзм ъгб.
 
-text = 'Фэзыя йз зьи ахлш пвёнлш чугрщцкфнлш дцосн жг еютзм ъгб.'
-print(decode_ru(text, 3))
+#text = 'Фэзыя йз зьи ахлш пвёнлш чугрщцкфнлш дцосн жг еютзм ъгб.'
+#print(decode_ru(text, 3))
 #Съешь же ещё этих мягких французских булок да выпей чаю.
 
+#text = 'The quick brown fox jumps over the lazy dog.'
+#print(encode_en(text, -3))
+#Qeb nrfzh yoltk clu grjmp lsbo qeb ixwv ald.
+
+#text = 'Qeb nrfzh yoltk clu grjmp lsbo qeb ixwv ald.'
+#print(decode_en(text, -3))
+#The quick brown fox jumps over the lazy dog.
+
 text = 'The quick brown fox jumps over the lazy dog.'
-print(encode_en(text, -3))
+print(encode(text, -3))
 #Qeb nrfzh yoltk clu grjmp lsbo qeb ixwv ald.
 
 text = 'Qeb nrfzh yoltk clu grjmp lsbo qeb ixwv ald.'
-print(decode_en(text, -3))
+print(decode(text, -3))
 #The quick brown fox jumps over the lazy dog.
 
 
