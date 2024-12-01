@@ -2,18 +2,18 @@ def __caesarify__(dictionary, key, text, decode=False):
     power = len(dictionary)
     map = {} 
     
-    for i in range(len(dictionary)):
-        y = (i + key) % power 
+    for index in range(len(dictionary)):
+        offset = (index + key) % power 
         if not decode:
-            map[dictionary[i]] = dictionary[y]
+            map[dictionary[index]] = dictionary[offset]
         else:
-            map[dictionary[y]] = dictionary[i]
+            map[dictionary[offset]] = dictionary[index]
     
     result = '' 
-    for i in range(len(text)):
-        letter = text[i]
-        if letter.lower() in map:
-            mapped = map[letter.lower()]
+    for index in range(len(text)):
+        letter = text[index]
+        mapped = map.get(letter.lower())
+        if mapped is not None:    
             result += mapped.upper() if letter.isupper() else mapped
         else:
             result += letter
@@ -33,7 +33,13 @@ def encode_ru(text, key):
     return __caesarify__(dictionary_ru, key, text)  
 
 def decode_ru(text, key):
-    return __caesarify__(dictionary_ru, key, text, decode=True)      
+    return __caesarify__(dictionary_ru, key, text, decode=True)
+
+def encode(s, rotn):
+    return encode_en(s, rotn)     
+
+def decode(s, rotn):
+    return decode_en(s, rotn)  
 
 text = 'Съешь же ещё этих мягких французских булок да выпей чаю.'
 print(encode_ru(text, 3))
