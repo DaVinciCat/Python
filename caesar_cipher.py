@@ -42,19 +42,19 @@ def decode(s, rotn):
     return __decode_en__(s, rotn)  
 
 #text = 'Съешь же ещё этих мягких французских булок да выпей чаю.'
-#print(encode_ru(text, 3))
+#print(__encode_ru__(text, 3))
 #Фэзыя йз зьи ахлш пвёнлш чугрщцкфнлш дцосн жг еютзм ъгб.
 
 #text = 'Фэзыя йз зьи ахлш пвёнлш чугрщцкфнлш дцосн жг еютзм ъгб.'
-#print(decode_ru(text, 3))
+#print(__decode_ru__(text, 3))
 #Съешь же ещё этих мягких французских булок да выпей чаю.
 
 #text = 'The quick brown fox jumps over the lazy dog.'
-#print(encode_en(text, -3))
+#print(__encode_en__(text, -3))
 #Qeb nrfzh yoltk clu grjmp lsbo qeb ixwv ald.
 
 #text = 'Qeb nrfzh yoltk clu grjmp lsbo qeb ixwv ald.'
-#print(decode_en(text, -3))
+#print(__decode_en__(text, -3))
 #The quick brown fox jumps over the lazy dog.
 
 text = 'The quick brown fox jumps over the lazy dog.'
