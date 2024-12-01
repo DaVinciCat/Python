@@ -1,4 +1,4 @@
-def __caesarify__(dictionary, key, text, decode=False):
+def caesarify(dictionary, key, text, decode=False):
     power = len(dictionary)
     map = {} 
     
@@ -11,50 +11,50 @@ def __caesarify__(dictionary, key, text, decode=False):
     
     result = '' 
     for index in range(len(text)):
-        letter = text[index]
-        mapped = map.get(letter.lower())
+        char = text[index]
+        mapped = map.get(char.lower())
         if mapped is not None:    
-            result += mapped.upper() if letter.isupper() else mapped
+            result += mapped.upper() if char.isupper() else mapped
         else:
-            result += letter
+            result += char
     
     return result
 
 dictionary_en = 'abcdefghijklmnopqrstuvwxyz'
 dictionary_ru = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя'
 
-def __encode_en__(text, key):
-    return __caesarify__(dictionary_en, key, text)
+def encode_en(text, key):
+    return caesarify(dictionary_en, key, text)
 
-def __decode_en__(text, key):
-    return __caesarify__(dictionary_en, key, text, decode=True)		  
+def decode_en(text, key):
+    return caesarify(dictionary_en, key, text, decode=True)		  
     
-def __encode_ru__(text, key):
-    return __caesarify__(dictionary_ru, key, text)  
+def encode_ru(text, key):
+    return caesarify(dictionary_ru, key, text)  
 
-def __decode_ru__(text, key):
-    return __caesarify__(dictionary_ru, key, text, decode=True)
+def decode_ru(text, key):
+    return caesarify(dictionary_ru, key, text, decode=True)
 
 def encode(s, rotn):
-    return __encode_en__(s, rotn)     
+    return encode_en(s, rotn)     
 
 def decode(s, rotn):
-    return __decode_en__(s, rotn)  
+    return decode_en(s, rotn)  
 
 #text = 'Съешь же ещё этих мягких французских булок да выпей чаю.'
-#print(__encode_ru__(text, 3))
+#print(encode_ru(text, 3))
 #Фэзыя йз зьи ахлш пвёнлш чугрщцкфнлш дцосн жг еютзм ъгб.
 
 #text = 'Фэзыя йз зьи ахлш пвёнлш чугрщцкфнлш дцосн жг еютзм ъгб.'
-#print(__decode_ru__(text, 3))
+#print(decode_ru(text, 3))
 #Съешь же ещё этих мягких французских булок да выпей чаю.
 
 #text = 'The quick brown fox jumps over the lazy dog.'
-#print(__encode_en__(text, -3))
+#print(encode_en(text, -3))
 #Qeb nrfzh yoltk clu grjmp lsbo qeb ixwv ald.
 
 #text = 'Qeb nrfzh yoltk clu grjmp lsbo qeb ixwv ald.'
-#print(__decode_en__(text, -3))
+#print(decode_en(text, -3))
 #The quick brown fox jumps over the lazy dog.
 
 text = 'The quick brown fox jumps over the lazy dog.'
