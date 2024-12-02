@@ -2,7 +2,7 @@ def caesarify(dictionary, key, text, decode=False):
     power = len(dictionary)
     map = {} 
     
-    for index in range(len(dictionary)):
+    for index in range(power):
         offset = (index + key) % power 
         if not decode:
             map[dictionary[index]] = dictionary[offset]
@@ -10,8 +10,7 @@ def caesarify(dictionary, key, text, decode=False):
             map[dictionary[offset]] = dictionary[index]
     
     result = '' 
-    for index in range(len(text)):
-        char = text[index]
+    for char in text:
         mapped = map.get(char.lower())
         if mapped is not None:    
             result += mapped.upper() if char.isupper() else mapped
@@ -74,4 +73,3 @@ print(decode(text, -3))
 #Нужно учитывать регистр символов, a со смещением 1, возвращает b, а A - возвращает B.
 #В решении задачи вам пригодятся строковые функции/методы вашего ЯП, а также функции для работы с ASCII-кодами символов.
 #Требуется реализовать только функцию, решение не должно осуществлять операций ввода-вывода.
-
