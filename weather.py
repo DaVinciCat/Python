@@ -98,11 +98,40 @@ class WeatherAPI(WeatherProvider):
             humidity=current['humidity']
         )
         
-service = OpenWeatherMap('c381c9ac149f656d61112fd06e182741')
-print(service.get_weather('Санкт-Петербург'))
+class WeatherProviderFactory:
+    types: dict[str, type[WeatherProvider]] = {
+        'OpenWeatherMap' : OpenWeatherMap,
+        'WeatherApi' : WeatherAPI,
+    }
+    
+    @classmethod
+    def add_type(cls, name:str, weather_class: type[WeatherProvider]) -> None:
+        if not name:
+            raise WeatherError('Type must have a name.')
+            
+        if not issubclass(weather_class, WeatherProvider):
+            raise WeatherError(f'Class {weather_class} is not WeatherProvider')
+            
+        cls.types[name] = weather_class
+        
+    @classmethod
+    def create(cls, name: str, *args, **kwargs) -> WeatherProvider:
+        weather_class = cls.types.get(name)
+        
+        if weather_class is None:
+            raise WeatherError(f'Weather provider with name {name} not found.')
+        
+        return weather_class(*args, **kwargs)
+        
+    
+ service = WeatherProviderFactory.create('WeatherAPI', 'fc824a2d3d444f26be7112344240412')
+ print(service.get_weather('Санкт-Петербург'))
+ 
+#service = OpenWeatherMap('c381c9ac149f656d61112fd06e182741')
+#print(service.get_weather('Санкт-Петербург'))
 
-service = WeatherAPI('fc824a2d3d444f26be7112344240412')
-print(service.get_weather('Санкт-Петербург'))
+#service = WeatherAPI('fc824a2d3d444f26be7112344240412')
+#print(service.get_weather('Санкт-Петербург'))
 
 #class Point2D
 #    def __init__(self, x: int, y: int) -> None:
